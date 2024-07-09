@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
@@ -20,13 +22,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
     cookieSession({
         name: "bezkoder-session",
-        keys: ["COOKIE_SECRET"],
+        keys: [process.env.COOKIE_SECRET],
         httpOnly: true
     })
 );
 
 db.mongoose
-    .connect(`mongodb://${process.env.DB_HOST || "0.0.0.0"}:${dbConfig.PORT}/${dbConfig.DB}`)
+    .connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
     .then(() => {
         console.log("Successfully connected to MongoDB.");
         initial();
