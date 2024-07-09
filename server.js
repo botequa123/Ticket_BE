@@ -26,7 +26,7 @@ app.use(
 );
 
 db.mongoose
-    .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`)
+    .connect(`mongodb://${process.env.DB_HOST || "0.0.0.0"}:${dbConfig.PORT}/${dbConfig.DB}`)
     .then(() => {
         console.log("Successfully connected to MongoDB.");
         initial();
