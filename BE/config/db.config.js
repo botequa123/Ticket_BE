@@ -1,5 +1,5 @@
 module.exports = {
-    HOST: "localhost",
-    PORT: 27017,
-    DB: "DB_Ticket"
+    HOST: process.env.DB_HOST || "localhost",
+    PORT: process.env.DB_PORT || 27017,
+    DB: process.env.DB_NAME || "DB_Ticket"
 };
